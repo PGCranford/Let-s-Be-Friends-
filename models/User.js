@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+// const dateFormat = require('../utils/dateFormat');
 import { isEmail } from 'validator';
 
 const UserSchema = new Schema({
@@ -37,7 +37,7 @@ const UserSchema = new Schema({
 
 // gets count of users friends 
 UserSchema.virtual('friendCount').get(function () {
-    return this.friends.reduce((total, friend) => total + friend.??.length + 1, 0);
+    return this.friends.reduce((total, friend) => total + friend.length + 1, 0);
 
 })
 
@@ -45,7 +45,7 @@ UserSchema.virtual('friendCount').get(function () {
 const User = model('User', UserSchema);
 
 //export User model
-model.exports = User
+module.exports = User;
 
 
 
