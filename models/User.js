@@ -26,15 +26,15 @@ const UserSchema = new Schema({
             ref: 'Thought'
         }
     ],
-    friends:
-        ///have to figure out
-        [
-            {
-                type: Schema,
-                ref: 'User'
-            }
+    // friends:
+    //     ///have to figure out
+    //     [
+    //         {
+    //             type: Schema,
+    //             ref: 'User'
+    //         }
 
-        ]
+    //     ]
 
 },
     {
