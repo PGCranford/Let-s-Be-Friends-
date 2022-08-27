@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat');
-import { isEmail } from 'validator';
+const validateEmail = function (email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+
+}
 
 const UserSchema = new Schema({
     username: {
@@ -13,18 +17,25 @@ const UserSchema = new Schema({
         type: String,
         unique: true,
         required: true,
-        validate: [isEmail, 'invalid email']
+        validate: [validateEmail, 'Please enter a valid email address'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address']
     },
     thoughts: [
         {
-            type: Schema, Types, ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'Thought'
         }
     ],
-    friends: {
+    friends:
         ///have to figure out
+        [
+            {
+                type: Schema,
+                ref: 'User'
+            }
 
-    }
+        ]
+
 },
     {
         toJSON: {
