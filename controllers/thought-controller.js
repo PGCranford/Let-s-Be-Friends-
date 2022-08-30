@@ -15,7 +15,25 @@ const thoughtController = {
                 res.status(400).json(err);
             });
     },
-
+    getThoughtById({ params }, res) {
+        Thought.findOne({ _id: params.id })
+            .populate({
+                path: 'users',
+                select: '-__v'
+            })
+            .select('-__v')
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'There is no thought with that ID' })
+                    return
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            });
+    },
 
     // add thought to user
     addThought({ params, body }, res) {
