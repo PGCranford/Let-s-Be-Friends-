@@ -67,4 +67,6 @@ const Thought = model('Thought', ThoughtSchema);
 //Exports Thought model
 
 
-module.exports = Thought
+
+
+module.exports = Thought;
